@@ -19,6 +19,9 @@ class Bubble {
     if (this.behavior === "dynamic") {
       this.x += this.speedX;
       this.y += this.speedY;
+    } else {
+      this.speedX = 0;
+      this.speedY = 0;
     }
   }
 

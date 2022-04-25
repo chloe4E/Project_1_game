@@ -61,7 +61,7 @@ class Game {
     let colorArray = ["Pink", "Blue", "Green"];
     let randomNum = Math.floor(Math.random() * 3);
     let randomColor = colorArray[randomNum];
-    this.playerBubble = new Bubble(this, 135, 470, "Green", "dynamic");
+    this.playerBubble = new Bubble(this, 135, 470, randomColor, "dynamic");
   }
 
   detectCollision() {
@@ -77,24 +77,21 @@ class Game {
     const isPlayerTouchingBubble = (bubble) =>
       this.playerBubble.x + this.playerBubble.width > bubble.x &&
       this.playerBubble.x < bubble.x + bubble.width &&
-      this.playerBubble.y + this.playerBubble.height > bubble.y &&
-      this.playerBubble.y < bubble.y + bubble.height;
+      this.playerBubble.y + this.playerBubble.height >= bubble.y &&
+      this.playerBubble.y <= bubble.y + bubble.height;
 
     this.enemies.forEach((bubble) => {
       if (
         isPlayerTouchingBubble(bubble) &&
         bubble.color === this.playerBubble.color
       ) {
+        this.playerBubble.behavior = "static";
         bubble.behavior = "remove";
-        this.playerBubble.behavior = "remove";
-        this.removeBubble();
       } else if (
         isPlayerTouchingBubble(bubble) &&
         bubble.color !== this.playerBubble.color
       ) {
-        if ((this.playerBubble.behavior = "dynamic")) {
-          this.playerBubble.behavior = "static";
-        }
+        this.playerBubble.behavior = "static";
       }
     });
   }
@@ -106,26 +103,29 @@ class Game {
   }
 
   removeBubble() {
-    this.enemies.forEach((bubble) => {
-      console.log(bubble.behavior);
+    return this.enemies.forEach((bubble) => {
+      //console.log(bubble.behavior);
       if (bubble.behavior === "remove") {
         bubble.color = "Yellow";
-        //       // this.enemies.slice(this.enemies.indexOf(bubble), 1);
       }
     });
-    if (this.playerBubble.behavior === "remove") {
-      this.playerBubble.color = "Yellow";
-    }
+
+    //return this.enemies.map((bubble) => !bubble.behavior === "remove");
+
+    /* if (this.playerBubble.behavior === "remove") {
+      this.playerBubble.color = "Black";
+    } */
   }
 
   checkAliveBubble() {
-    if (this.playerBubble === "dynamic") {
-    } else if (this.playerBubble.behavior === "static") {
+    if (this.playerBubble.behavior === "static") {
       this.enemies.push(this.playerBubble);
       this.createPlayerBubble();
     } else if (this.playerBubble.behavior === "remove") {
       this.playerBubble.color = "Yellow";
       this.createPlayerBubble();
+    } else if (this.playerBubble.behavior === "dynamic") {
+      this.detectBubbleCollision();
     }
   }
 
