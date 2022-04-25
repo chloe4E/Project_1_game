@@ -42,7 +42,8 @@ class Game {
     this.detectCollision();
     this.detectCanvasCollision();
     this.detectBubbleCollision();
-    //this.removeBubble();
+    this.removeBubble();
+    this.checkAliveBubble();
     //this.checkGameOver();
   }
 
@@ -60,7 +61,7 @@ class Game {
     let colorArray = ["Pink", "Blue", "Green"];
     let randomNum = Math.floor(Math.random() * 3);
     let randomColor = colorArray[randomNum];
-    this.playerBubble = new Bubble(this, 135, 470, randomColor, "dynamic");
+    this.playerBubble = new Bubble(this, 135, 470, "Green", "dynamic");
   }
 
   detectCollision() {
@@ -86,7 +87,7 @@ class Game {
       ) {
         bubble.behavior = "remove";
         this.playerBubble.behavior = "remove";
-        // this.removeBubble();
+        this.removeBubble();
       } else if (
         isPlayerTouchingBubble(bubble) &&
         bubble.color !== this.playerBubble.color
@@ -106,17 +107,27 @@ class Game {
 
   removeBubble() {
     this.enemies.forEach((bubble) => {
+      console.log(bubble.behavior);
       if (bubble.behavior === "remove") {
         bubble.color = "Yellow";
-        // this.enemies.slice(this.enemies.indexOf(bubble), 1);
+        //       // this.enemies.slice(this.enemies.indexOf(bubble), 1);
       }
     });
     if (this.playerBubble.behavior === "remove") {
-      this.playerBubble = "Yellow";
+      this.playerBubble.color = "Yellow";
     }
   }
 
-  //checkAliveBubble() {}
+  checkAliveBubble() {
+    if (this.playerBubble === "dynamic") {
+    } else if (this.playerBubble.behavior === "static") {
+      this.enemies.push(this.playerBubble);
+      this.createPlayerBubble();
+    } else if (this.playerBubble.behavior === "remove") {
+      this.playerBubble.color = "Yellow";
+      this.createPlayerBubble();
+    }
+  }
 
   stop() {
     this.isRunning = false;
