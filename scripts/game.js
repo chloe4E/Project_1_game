@@ -106,26 +106,25 @@ class Game {
     this.enemies.forEach((bubble) => {
       //console.log(bubble.behavior);
       if (bubble.behavior === "remove") {
-        //this.playerBubble.color = "Yellow";
         bubble.color = "Yellow";
-        //this.playerBubble.color = "Yellow";
       }
     });
   }
 
   checkAliveBubble() {
     if (this.playerBubble.behavior === "static") {
-      //this.playerBubble.color = "Yellow";
       this.enemies.push(this.playerBubble);
-
-      // //comment the
-      //   if(enemies.filter(e => e.color === 'Yellow').length > 0){
-
-      //   };
+      let yellowCounter = this.enemies.filter(
+        (item) => item.color === "Yellow"
+      ).length;
+      //console.log(`The yellow counter is: ` + yellowCounter);
+      this.enemies = this.enemies.filter((item) => !(item.color === "Yellow"));
+      if (yellowCounter) {
+        this.enemies.pop();
+      }
 
       this.createPlayerBubble();
     } else if (this.playerBubble.behavior === "remove") {
-      this.playerBubble.color = "Yellow";
       this.createPlayerBubble();
     } else if (this.playerBubble.behavior === "dynamic") {
       this.detectBubbleCollision();
