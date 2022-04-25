@@ -103,23 +103,26 @@ class Game {
   }
 
   removeBubble() {
-    return this.enemies.forEach((bubble) => {
+    this.enemies.forEach((bubble) => {
       //console.log(bubble.behavior);
       if (bubble.behavior === "remove") {
+        //this.playerBubble.color = "Yellow";
         bubble.color = "Yellow";
+        //this.playerBubble.color = "Yellow";
       }
     });
-
-    //return this.enemies.map((bubble) => !bubble.behavior === "remove");
-
-    /* if (this.playerBubble.behavior === "remove") {
-      this.playerBubble.color = "Black";
-    } */
   }
 
   checkAliveBubble() {
     if (this.playerBubble.behavior === "static") {
+      //this.playerBubble.color = "Yellow";
       this.enemies.push(this.playerBubble);
+
+      // //comment the
+      //   if(enemies.filter(e => e.color === 'Yellow').length > 0){
+
+      //   };
+
       this.createPlayerBubble();
     } else if (this.playerBubble.behavior === "remove") {
       this.playerBubble.color = "Yellow";
