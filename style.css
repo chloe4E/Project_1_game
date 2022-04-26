@@ -1,0 +1,17 @@
+body {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: stretch;
+  background-image: url(/images/blue-background-with-floating-water-bubbles_1017-26348.webp);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+h1 {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  color: turquoise;
+  font-weight: lighter;
+}

@@ -14,6 +14,11 @@ class Game {
     this.isRunning = false;
   }
 
+  // loadBackground() {
+  //   this.ctx.fillStyle = "Black";
+  //   this.ctx.fillRect(0, 0, cWidth, cHeight);
+  // }
+
   //start
   start() {
     this.isRunning = true;
