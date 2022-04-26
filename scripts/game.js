@@ -173,6 +173,38 @@ class Game {
         bubble.color = "Black";
       }
     });
+    // add a check if the only upper bubble is black then change your color to black.
+    // order the enemy array by growing y
+    // this.enemies.sort(function (a, b) {
+    //   return a.y - b.y;
+    // });
+    // // if the bubble touches only one black bubble from the upper side then becomes black
+    // this.enemies.forEach((bubble) => {
+    //   console.log(`the current enemy has y: ${bubble.y}`);
+    //   let upperBubble = -1;
+    //   let upperBlackBubble = 0;
+    //   if (bubble.color === "Black") {
+    //     upperBlackBubble--;
+    //   }
+    //   for (let i = 0; i < this.enemies.length; i++) {
+    //     if (
+    //       bubble.x <= this.enemies[i].x + this.enemies[i].width &&
+    //       bubble.x + bubble.width >= this.enemies[i].x &&
+    //       bubble.y <= this.enemies[i].y + this.enemies[i].height
+    //     ) {
+    //       // collision detected:
+    //       upperBubble++;
+    //       if (this.enemies.color === "Black") {
+    //         upperBlackBubble++;
+    //       }
+    //     }
+    //   }
+    //   console.log(`the current enemy has upper Bubble: ${upperBubble}`);
+    //   if (upperBubble === upperBlackBubble) {
+    //     bubble.color = "Black";
+    //   }
+    // });
+
     this.enemies = this.enemies.filter((item) => !(item.color === "Black"));
   }
 
