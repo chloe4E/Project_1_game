@@ -127,7 +127,7 @@ class Game {
   //   });
   // }
 
-  //Just gonna write here so I don't mess up your work
+  //Working one:
   checkAdjacentBubble2(initialBubble) {
     this.enemies.forEach((enemy, i) => {
       const isAdjacent = (enemy) =>
@@ -143,8 +143,6 @@ class Game {
         enemy.behavior = "remove";
       }
     });
-    //if (nextBubble) this.checkAdjacentBubble2(nextBubble);
-    //if (nextBubble) this.checkAdjacentBubble2(nextBubble);
   }
 
   checkFlyingBubble() {
@@ -217,6 +215,11 @@ class Game {
   checkGameWon() {
     if (this.enemies.length === 0) {
       this.stop();
+      this.ctx.fillStyle = "Black";
+      this.ctx.fillRect(this.x, this.y, this.width, this.height);
+      this.ctx.font = "18px Arial";
+      this.ctx.fillStyle = "green";
+      this.ctx.fillText(`Bravo 🥳`, this.width / 3, this.height / 2);
     }
   }
 
