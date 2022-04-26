@@ -42,6 +42,7 @@ class Game {
     this.detectCollision();
     this.detectCanvasCollision();
     this.detectBubbleCollision();
+    //this.checkAdjacentBubble();
     this.removeBubble();
     this.checkAliveBubble();
     this.checkGameWon();
@@ -103,7 +104,78 @@ class Game {
     }
   }
 
-  checkAdjacentBubble() {}
+  checkAdjacentBubble() {
+    this.enemies.forEach((bubble) => {
+      console.log("current bubble color is: " + bubble.color);
+      for (let i = 0; i < this.enemies.length; i++) {
+        console.log("current enemy color is: " + this.enemies[i].color);
+        // const isAdjacent = (bubble) =>
+        //   this.bubble.x + this.bubble.width >= this.enemies[i].x &&
+        //   this.bubble.x <= this.enemies[i].x + this.enemies[i].width &&
+        //   this.bubble.y + this.bubble.height >= this.enemies[i].y &&
+        //   this.bubble.y <= this.enemies[i].y + this.enemies[i].height;
+        // if (
+        //   isAdjacent(bubble) &&
+        //   bubble.color === this.enemies[i].color &&
+        //   (this.enemies[i].behavior === "remove" ||
+        //     bubble.behavior === "remove")
+        // ) {
+        //   bubble.color = "Yellow";
+        // }
+      }
+    });
+  }
+
+  //Just gonna write here so I don't mess up your work
+  checkAdjacentBubble2(initialBubble) {
+    //let nextBubble = null;
+    this.enemies.forEach((enemy, i) => {
+      const isAdjacent = (enemy) =>
+        initialBubble.x + initialBubble.width >= enemy.x &&
+        initialBubble.x <= enemy.x + enemy.width &&
+        initialBubble.y + initialBubble.height >= enemy.y &&
+        initialBubble.y <= enemy.y + enemy.height;
+      if (
+        isAdjacent(enemy) &&
+        initialBubble.color === enemy.color &&
+        (enemy.behavior === "remove" || initialBubble.behavior === "remove")
+      ) {
+        this.checkAdjacentBubble2(enemy);
+      }
+    });
+    //if (nextBubble) this.checkAdjacentBubble2(nextBubble);
+  }
+
+  checkFlyingBubble() {
+    this.enemies.forEach((bubble) => {
+      //console.log("current bubble color is: " + bubble.color);
+      let isTouchingAnotherBubble = -1;
+      let isTouchingBlackBubble = 0;
+      for (let i = 0; i < this.enemies.length; i++) {
+        if (
+          bubble.x <= this.enemies[i].x + this.enemies[i].width &&
+          bubble.x + bubble.width >= this.enemies[i].x &&
+          bubble.y <= this.enemies[i].y + this.enemies[i].height &&
+          bubble.y + bubble.height >= this.enemies[i].y
+        ) {
+          // collision detected:
+          isTouchingAnotherBubble++;
+        }
+      }
+      console.log(
+        `inside checkFlying Bubble for a ${bubble.color} bubble at y (${bubble.y}) which is touching ${isTouchingAnotherBubble} other bubbles`
+      );
+      if (
+        bubble.color !== "Black" &&
+        bubble.y !== 0 &&
+        isTouchingAnotherBubble === 0
+      ) {
+        // not touching canvas and no collision detected!
+        bubble.color = "Black";
+      }
+    });
+    this.enemies = this.enemies.filter((item) => !(item.color === "Black"));
+  }
 
   removeBubble() {
     this.enemies.forEach((bubble) => {
@@ -125,11 +197,13 @@ class Game {
       if (yellowCounter) {
         this.enemies.pop();
       }
-
+      this.checkFlyingBubble();
       this.createPlayerBubble();
     } else if (this.playerBubble.behavior === "remove") {
+      this.checkFlyingBubble();
       this.createPlayerBubble();
     } else if (this.playerBubble.behavior === "dynamic") {
+      this.checkFlyingBubble();
       this.detectBubbleCollision();
     }
   }
