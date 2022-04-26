@@ -89,6 +89,7 @@ class Game {
       ) {
         this.playerBubble.behavior = "static";
         bubble.behavior = "remove";
+        this.checkAdjacentBubble2(bubble);
       } else if (
         isPlayerTouchingBubble(bubble) &&
         bubble.color !== this.playerBubble.color
@@ -104,31 +105,30 @@ class Game {
     }
   }
 
-  checkAdjacentBubble() {
-    this.enemies.forEach((bubble) => {
-      console.log("current bubble color is: " + bubble.color);
-      for (let i = 0; i < this.enemies.length; i++) {
-        console.log("current enemy color is: " + this.enemies[i].color);
-        // const isAdjacent = (bubble) =>
-        //   this.bubble.x + this.bubble.width >= this.enemies[i].x &&
-        //   this.bubble.x <= this.enemies[i].x + this.enemies[i].width &&
-        //   this.bubble.y + this.bubble.height >= this.enemies[i].y &&
-        //   this.bubble.y <= this.enemies[i].y + this.enemies[i].height;
-        // if (
-        //   isAdjacent(bubble) &&
-        //   bubble.color === this.enemies[i].color &&
-        //   (this.enemies[i].behavior === "remove" ||
-        //     bubble.behavior === "remove")
-        // ) {
-        //   bubble.color = "Yellow";
-        // }
-      }
-    });
-  }
+  // checkAdjacentBubble() {
+  //   this.enemies.forEach((bubble) => {
+  //     console.log("current bubble color is: " + bubble.color);
+  //     for (let i = 0; i < this.enemies.length; i++) {
+  //       console.log("current enemy color is: " + this.enemies[i].color);
+  //       const isAdjacent = (bubble) =>
+  //         this.bubble.x + this.bubble.width >= this.enemies[i].x &&
+  //         this.bubble.x <= this.enemies[i].x + this.enemies[i].width &&
+  //         this.bubble.y + this.bubble.height >= this.enemies[i].y &&
+  //         this.bubble.y <= this.enemies[i].y + this.enemies[i].height;
+  //       if (
+  //         isAdjacent(bubble) &&
+  //         bubble.color === this.enemies[i].color &&
+  //         (this.enemies[i].behavior === "remove" ||
+  //           bubble.behavior === "remove")
+  //       ) {
+  //         bubble.color = "Yellow";
+  //       }
+  //     }
+  //   });
+  // }
 
   //Just gonna write here so I don't mess up your work
   checkAdjacentBubble2(initialBubble) {
-    //let nextBubble = null;
     this.enemies.forEach((enemy, i) => {
       const isAdjacent = (enemy) =>
         initialBubble.x + initialBubble.width >= enemy.x &&
@@ -140,9 +140,10 @@ class Game {
         initialBubble.color === enemy.color &&
         (enemy.behavior === "remove" || initialBubble.behavior === "remove")
       ) {
-        this.checkAdjacentBubble2(enemy);
+        enemy.behavior = "remove";
       }
     });
+    //if (nextBubble) this.checkAdjacentBubble2(nextBubble);
     //if (nextBubble) this.checkAdjacentBubble2(nextBubble);
   }
 
@@ -162,9 +163,9 @@ class Game {
           isTouchingAnotherBubble++;
         }
       }
-      console.log(
-        `inside checkFlying Bubble for a ${bubble.color} bubble at y (${bubble.y}) which is touching ${isTouchingAnotherBubble} other bubbles`
-      );
+      // console.log(
+      //   `inside checkFlying Bubble for a ${bubble.color} bubble at y (${bubble.y}) which is touching ${isTouchingAnotherBubble} other bubbles`
+      // );
       if (
         bubble.color !== "Black" &&
         bubble.y !== 0 &&
