@@ -44,7 +44,8 @@ class Game {
     this.detectBubbleCollision();
     this.removeBubble();
     this.checkAliveBubble();
-    //this.checkGameOver();
+    this.checkGameWon();
+    this.checkGameOver();
   }
 
   createEnemies() {
@@ -102,6 +103,8 @@ class Game {
     }
   }
 
+  checkAdjacentBubble() {}
+
   removeBubble() {
     this.enemies.forEach((bubble) => {
       //console.log(bubble.behavior);
@@ -133,5 +136,29 @@ class Game {
 
   stop() {
     this.isRunning = false;
+    clearInterval(this.intervalId);
+  }
+
+  checkGameWon() {
+    if (this.enemies.length === 0) {
+      this.stop();
+    }
+  }
+
+  checkGameOver() {
+    let maxY = Math.max.apply(
+      Math,
+      this.enemies.map(function (o) {
+        return o.y;
+      })
+    );
+    if (maxY + 30 > 400) {
+      this.stop();
+      this.ctx.fillStyle = "Black";
+      this.ctx.fillRect(this.x, this.y, this.width, this.height);
+      this.ctx.font = "18px Arial";
+      this.ctx.fillStyle = "red";
+      this.ctx.fillText(`😭 GAME OVER`, this.width / 6, this.height / 2);
+    }
   }
 }
