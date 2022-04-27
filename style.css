@@ -5,13 +5,16 @@ body {
   justify-content: flex-start;
   align-items: center;
   align-content: stretch;
-  background-image: url(/images/blue-background-with-floating-water-bubbles_1017-26348.webp);
+  /*  
+  background-image: url(/images/fond-de-hotte-ardoise-noir-2.jpeg);
+  */
+  background-image: url(/images/fond-de-hotte-ardoise-noir-2.jpeg);
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 h1 {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  color: turquoise;
+  color: lightgray;
   font-weight: lighter;
 }

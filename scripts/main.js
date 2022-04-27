@@ -3,8 +3,8 @@ const cHeight = canvas.height;
 
 window.onload = () => {
   const game = new Game();
-  game.ctx.fillStyle = "paleturquoise";
-  game.ctx.fillRect(0, 0, cWidth, cHeight);
+  // game.ctx.fillStyle = "paleturquoise";
+  // game.ctx.fillRect(0, 0, cWidth, cHeight);
 
   document.getElementById("start-button").onclick = () => {
     startGame();
