@@ -8,7 +8,7 @@ body {
   /*  
   background-image: url(/images/fond-de-hotte-ardoise-noir-2.jpeg);
   */
-  background-image: url(/images/fond-de-hotte-ardoise-noir-2.jpeg);
+  background-image: url(/docs/assets/images/fond-de-hotte-ardoise-noir-2.jpeg);
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -17,4 +17,49 @@ h1 {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   color: lightgray;
   font-weight: lighter;
+}
+
+.fancy-border {
+  border-image-slice: 84 136 77 135;
+  border-image-width: 20px 20px 20px 20px;
+  border-image-outset: 0px 0px 0px 0px;
+  border-image-repeat: stretch stretch;
+  border-image-source: url("https://gallery.yopriceville.com/var/resizes/Free-Clipart-Pictures/Decorative-Elements-PNG/Wooden_Frame_Border_PNG_Clipart.png?m=1559095285");
+
+  /* Without this the border will not show */
+  border-style: solid;
+  border-width: 5px;
+}
+
+.wood {
+  background: url(http://1.bp.blogspot.com/-tXavBQFjNFQ/VMSaYaq7PtI/AAAAAAAADSc/awMPRe3yu5A/s1600/wood_pattern.png);
+}
+
+.button:active {
+  box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.2),
+    inset 0px -2px 0px 0px rgba(0, 0, 0, 0.3),
+    inset 0px 2px 0px 0px rgba(255, 255, 255, 0.5);
+  top: 3px;
+}
+.button div {
+  padding: 10px 20px 12px 20px;
+  color: rgba(0, 0, 0, 0.7);
+  text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.4);
+}
+.button:active div {
+  padding-bottom: 9px;
+}
+
+.button {
+  border: none;
+
+  box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.2),
+    inset 0px -5px 0px 0px rgba(0, 0, 0, 0.3),
+    inset 0px 2px 0px 0px rgba(255, 255, 255, 0.5);
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  overflow: hidden;
+  cursor: pointer;
+  margin: 36px;
 }
