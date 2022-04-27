@@ -335,9 +335,9 @@ class Game {
       this.stop();
       this.ctx.fillStyle = "Black";
       this.ctx.fillRect(this.x, this.y, this.width, this.height);
-      this.ctx.font = "18px Arial";
-      this.ctx.fillStyle = "green";
-      this.ctx.fillText(`Bravo 🥳`, this.width / 3, this.height / 2);
+      this.ctx.font = "18px Courier New";
+      this.ctx.fillStyle = "Lightgrey";
+      this.ctx.fillText(`Ice ice baby 😎`, this.width / 6, this.height / 2);
     }
   }
 
@@ -352,9 +352,9 @@ class Game {
       this.stop();
       this.ctx.fillStyle = "Black";
       this.ctx.fillRect(this.x, this.y, this.width, this.height);
-      this.ctx.font = "18px Arial";
-      this.ctx.fillStyle = "red";
-      this.ctx.fillText(`😭 GAME OVER`, this.width / 6, this.height / 2);
+      this.ctx.font = "18px Courier New";
+      this.ctx.fillStyle = "Lightgrey";
+      this.ctx.fillText(`😭 You got your ice kicked`, 5, this.height / 2);
     }
   }
 }
