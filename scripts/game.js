@@ -12,6 +12,11 @@ class Game {
     this.arrow = null;
     this.controls = null;
     this.isRunning = false;
+    this.removeArr = [];
+    this.rows = [
+      30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330, 360, 390, 420, 450,
+      480, 540,
+    ];
   }
 
   // loadBackground() {
@@ -50,6 +55,7 @@ class Game {
     //this.checkAdjacentBubble();
     this.removeBubble();
     this.checkAliveBubble();
+    this.rowChecker();
     this.checkGameWon();
     this.checkGameOver();
   }
@@ -68,7 +74,7 @@ class Game {
     let colorArray = ["Pink", "Blue", "Green"];
     let randomNum = Math.floor(Math.random() * 3);
     let randomColor = colorArray[randomNum];
-    this.playerBubble = new Bubble(this, 135, 470, randomColor, "dynamic");
+    this.playerBubble = new Bubble(this, 135, 480, randomColor, "dynamic");
   }
 
   detectCollision() {
@@ -82,8 +88,8 @@ class Game {
 
   detectBubbleCollision() {
     const isPlayerTouchingBubble = (bubble) =>
-      this.playerBubble.x + this.playerBubble.width > bubble.x &&
-      this.playerBubble.x < bubble.x + bubble.width &&
+      this.playerBubble.x + this.playerBubble.width >= bubble.x &&
+      this.playerBubble.x <= bubble.x + bubble.width &&
       this.playerBubble.y + this.playerBubble.height >= bubble.y &&
       this.playerBubble.y <= bubble.y + bubble.height;
 
@@ -135,11 +141,11 @@ class Game {
   //Working one:
   checkAdjacentBubble2(initialBubble) {
     this.enemies.forEach((enemy, i) => {
-      const isAdjacent = (enemy) =>
-        initialBubble.x + initialBubble.width >= enemy.x &&
+      const isAdjacent = (enemy) => initialBubble.crashWith(enemy);
+      /* initialBubble.x + initialBubble.width >= enemy.x &&
         initialBubble.x <= enemy.x + enemy.width &&
         initialBubble.y + initialBubble.height >= enemy.y &&
-        initialBubble.y <= enemy.y + enemy.height;
+        initialBubble.y <= enemy.y + enemy.height; */
       if (
         isAdjacent(enemy) &&
         initialBubble.color === enemy.color &&
@@ -157,6 +163,7 @@ class Game {
       let isTouchingBlackBubble = 0;
       for (let i = 0; i < this.enemies.length; i++) {
         if (
+          // bubble.crashWith(this.enemies[i])
           bubble.x <= this.enemies[i].x + this.enemies[i].width &&
           bubble.x + bubble.width >= this.enemies[i].x &&
           bubble.y <= this.enemies[i].y + this.enemies[i].height &&
@@ -178,39 +185,110 @@ class Game {
         bubble.color = "Black";
       }
     });
+    // ---------------------------------------------------------------------------------------------------------------------------------------------------------
     // add a check if the only upper bubble is black then change your color to black.
     // order the enemy array by growing y
-    // this.enemies.sort(function (a, b) {
-    //   return a.y - b.y;
-    // });
-    // // if the bubble touches only one black bubble from the upper side then becomes black
-    // this.enemies.forEach((bubble) => {
-    //   console.log(`the current enemy has y: ${bubble.y}`);
-    //   let upperBubble = -1;
-    //   let upperBlackBubble = 0;
-    //   if (bubble.color === "Black") {
-    //     upperBlackBubble--;
-    //   }
-    //   for (let i = 0; i < this.enemies.length; i++) {
-    //     if (
-    //       bubble.x <= this.enemies[i].x + this.enemies[i].width &&
-    //       bubble.x + bubble.width >= this.enemies[i].x &&
-    //       bubble.y <= this.enemies[i].y + this.enemies[i].height
-    //     ) {
-    //       // collision detected:
-    //       upperBubble++;
-    //       if (this.enemies.color === "Black") {
-    //         upperBlackBubble++;
-    //       }
-    //     }
-    //   }
-    //   console.log(`the current enemy has upper Bubble: ${upperBubble}`);
-    //   if (upperBubble === upperBlackBubble) {
-    //     bubble.color = "Black";
-    //   }
-    // });
+    /* this.enemies.sort(function (a, b) {
+      return a.y - b.y;
+    }); */
+    console.log(this.enemies);
+    // if the bubble touches only one black bubble from the upper side then becomes black
+    /* this.enemies.forEach((bubble) => {
+      console.log(`the current ${bubble.color} enemy has y: ${bubble.y}`);
+      let upperBubble = -1;
+      let upperBlackBubble = 0;
+      if (bubble.color === "Black") {
+        upperBlackBubble--;
+      }
+      for (let i = 0; i < this.enemies.length; i++) {
+        if (
+          //bubble.crashWith(this.enemies[i])
+          bubble.x <= this.enemies[i].x + this.enemies[i].width &&
+          bubble.x + bubble.width >= this.enemies[i].x &&
+          bubble.y <= this.enemies[i].y + this.enemies[i].height
+        ) {
+          // collision detected:
+          upperBubble++;
+          if (this.enemies.color === "Black") {
+            upperBlackBubble++;
+          }
+        }
+      }
+      console.log(
+        `the current ${bubble.color} enemy has upper Bubble: ${upperBubble} and touches ${upperBlackBubble} black bubbles`
+      );
+      if (bubble.y !== 0 && upperBubble === upperBlackBubble) {
+        bubble.color = "Black";
+      }
+    });
+ */
+    // -----------------------------------------------------------------------------------
+    /* this.enemies.forEach((bubble) => {
+      for (let i = 0; i < this.enemies.length; i++) {
+        console.log(this.enemies[i].color);
+        const isCrashing = (enemy) => {
+          this.checkFlyingBubble();
+          bubble.crashWith(enemy);
+        };
+        if (
+          !(bubble.color != "Black") &&
+          isCrashing(this.enemies[i]) &&
+          bubble.y < this.enemies[i].y
+        ) {
+          this.enemies[i].color = "Black";
+        }
 
+      }
+    });
+ */
+    // -----------------------------------
     this.enemies = this.enemies.filter((item) => !(item.color === "Black"));
+  }
+
+  checkBottomNeighbour(bubble, enemy) {
+    if (
+      enemy.y > 0 &&
+      !(
+        bubble.top > enemy.bottom ||
+        bubble.left > enemy.right ||
+        bubble.right < enemy.left
+      ) &&
+      bubble.color !== enemy.color
+    ) {
+      enemy.color = "Black";
+      // this.enemies = this.enemies.filter((item) => !(item.color === "Black"));
+    }
+  }
+
+  rowChecker() {
+    let emptyY;
+    let enemiesYCoordinates = this.enemies.map((enemy) => enemy.y);
+
+    enemiesYCoordinates.sort(function (a, b) {
+      return a.y - b.y;
+    });
+    console.log(enemiesYCoordinates); // [0,0,0,0,..30,60,120]
+
+    for (let i = 0; i < this.rows.length; i++) {
+      // [0,30,60,90,120...]
+      if (!enemiesYCoordinates.includes(this.rows[i])) {
+        emptyY = this.rows[i];
+        break;
+      }
+    }
+
+    /*     do {
+      enemiesYCoordinates.includes(this.rows[i]);
+      result = result + i;
+    } while (emptyY === 0);
+ */
+    console.log(`The last y is: ${emptyY}`);
+
+    this.enemies.forEach((enemy) => {
+      if (enemy.y > emptyY) {
+        enemy.color = "Black";
+      }
+    });
   }
 
   removeBubble() {
@@ -234,6 +312,9 @@ class Game {
         this.enemies.pop();
       }
       this.checkFlyingBubble();
+      this.enemies.forEach((enemy) => {
+        this.checkBottomNeighbour(this.playerBubble, enemy);
+      });
       this.createPlayerBubble();
     } else if (this.playerBubble.behavior === "remove") {
       this.checkFlyingBubble();

@@ -39,8 +39,16 @@ class Bubble {
   bottom() {
     return this.y + this.height;
   }
-}
 
+  crashWith(enemy) {
+    return !(
+      this.bottom() < enemy.top() ||
+      this.top() > enemy.bottom() ||
+      this.right() < enemy.left() ||
+      this.left() > enemy.right()
+    );
+  }
+}
 class Arrow extends Bubble {
   constructor(game) {
     super(game);
@@ -73,7 +81,7 @@ class Arrow extends Bubble {
   drawArrow() {
     this.game.ctx.beginPath();
     this.game.ctx.moveTo(this.x, this.y);
-    this.game.ctx.lineTo(145, 500);
+    this.game.ctx.lineTo(145, 510);
     this.game.ctx.lineWidth = 10;
     this.game.ctx.fillStyle = this.color;
     this.game.ctx.fill();
