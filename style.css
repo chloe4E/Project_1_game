@@ -9,7 +9,7 @@ body {
   /*  
   background-image: url(/images/fond-de-hotte-ardoise-noir-2.jpeg);
   */
-  background-image: url(/docs/assets/images/fond-de-hotte-ardoise-noir-2.jpeg);
+  background-image: url(docs/assets/images/fond-de-hotte-ardoise-noir-2.jpeg);
   background-repeat: no-repeat;
   background-size: cover;
 }
