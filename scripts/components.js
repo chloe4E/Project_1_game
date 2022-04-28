@@ -56,7 +56,7 @@ class Arrow extends Bubble {
     this.y = 400;
     this.width = 10;
     this.height = 100;
-    this.color = "Brown";
+    this.color = "Orange";
   }
 
   tiltLeft() {
@@ -83,7 +83,7 @@ class Arrow extends Bubble {
     this.game.ctx.moveTo(this.x, this.y);
     this.game.ctx.lineTo(145, 510);
     this.game.ctx.lineWidth = 10;
-    this.game.ctx.fillStyle = this.color;
+    this.game.ctx.fillStyle = "Orange";
     this.game.ctx.fill();
     this.game.ctx.stroke();
   }
