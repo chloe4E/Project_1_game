@@ -26,19 +26,19 @@ class Controls {
             this.game.playerBubble.speedX = -2;
             this.game.playerBubble.speedY = -5;
           } else if (this.arrow.x === 145 - 50) {
-            this.game.playerBubble.speedX = -3.5;
+            this.game.playerBubble.speedX = -4.5;
             this.game.playerBubble.speedY = -5;
           } else if (this.arrow.x === 145 - 75) {
-            this.game.playerBubble.speedX = -6;
+            this.game.playerBubble.speedX = -8;
             this.game.playerBubble.speedY = -5;
           } else if (this.arrow.x === 145 + 25) {
             this.game.playerBubble.speedX = +2;
             this.game.playerBubble.speedY = -5;
           } else if (this.arrow.x === 145 + 50) {
-            this.game.playerBubble.speedX = +3.5;
+            this.game.playerBubble.speedX = +4.5;
             this.game.playerBubble.speedY = -5;
           } else if (this.arrow.x === 145 + 75) {
-            this.game.playerBubble.speedX = +6;
+            this.game.playerBubble.speedX = +8;
             this.game.playerBubble.speedY = -5;
           }
       }
