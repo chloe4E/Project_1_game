@@ -17,6 +17,8 @@ class Game {
       30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330, 360, 390, 420, 450,
       480, 540,
     ];
+    this.backgroundClosure = new Image();
+    this.iceCubeRapper = new Image();
   }
 
   // loadBackground() {
@@ -331,30 +333,51 @@ class Game {
   }
 
   checkGameWon() {
+    this.iceCubeRapper.src = "../docs/assets/images/ice-cube-rapper.jpeg";
     if (this.enemies.length === 0) {
+      //===0
       this.stop();
       this.ctx.fillStyle = "Black";
       this.ctx.fillRect(this.x, this.y, this.width, this.height);
+      this.ctx.drawImage(this.iceCubeRapper, 35, 75);
       this.ctx.font = "18px Courier New";
       this.ctx.fillStyle = "Lightgrey";
-      this.ctx.fillText(`Ice ice baby 😎`, this.width / 6, this.height / 2);
+      this.ctx.fillText(`Ice ice baby 😎`, 75, 350);
     }
   }
 
   checkGameOver() {
+    this.backgroundClosure.src =
+      "../docs/assets/images/crystal-859317_1280.webp";
+
     let maxY = Math.max.apply(
       Math,
       this.enemies.map(function (o) {
         return o.y;
       })
     );
+
     if (maxY + 30 > 400) {
+      //400
       this.stop();
+      /*       this.ctx.fillStyle = "Black";
+      this.ctx.fillRect(this.x, this.y, this.width, this.height); */
+      this.ctx.drawImage(
+        this.backgroundClosure,
+        this.x,
+        this.y,
+        this.width,
+        this.height
+      );
+      //this.ctx.drawImage(image, 150, 200, 500, 300, 60, 60, 500, 300);
+      this.ctx.font = "bolder 36px Courier New";
       this.ctx.fillStyle = "Black";
-      this.ctx.fillRect(this.x, this.y, this.width, this.height);
-      this.ctx.font = "18px Courier New";
-      this.ctx.fillStyle = "Lightgrey";
-      this.ctx.fillText(`😭 You got your ice kicked`, 5, this.height / 2);
+      this.ctx.fillText(`You`, 30, 100);
+      this.ctx.fillText(`got`, 200, 150);
+      this.ctx.fillText(`your`, 30, 200);
+      this.ctx.fillText(`ice`, 200, 250);
+      this.ctx.fillText(`kicked`, 30, 300);
+      this.ctx.fillText(`😭 `, 135, 400);
     }
   }
 }
