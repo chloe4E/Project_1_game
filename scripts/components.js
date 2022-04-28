@@ -83,8 +83,8 @@ class Arrow extends Bubble {
     this.game.ctx.moveTo(this.x, this.y);
     this.game.ctx.lineTo(145, 510);
     this.game.ctx.lineWidth = 10;
-    this.game.ctx.strokeStyle = this.color;
-    this.game.ctx.fill();
+    this.game.ctx.strokeStyle = "SaddleBrown";
+    //this.game.ctx.fill();
     this.game.ctx.stroke();
   }
 }
