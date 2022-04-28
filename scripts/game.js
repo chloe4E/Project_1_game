@@ -55,7 +55,7 @@ class Game {
     //this.checkAdjacentBubble();
     this.removeBubble();
     this.checkAliveBubble();
-    this.rowChecker();
+    //this.rowChecker();
     this.checkGameWon();
     this.checkGameOver();
   }
@@ -74,7 +74,7 @@ class Game {
     let colorArray = ["Pink", "Blue", "Green"];
     let randomNum = Math.floor(Math.random() * 3);
     let randomColor = colorArray[randomNum];
-    this.playerBubble = new Bubble(this, 135, 480, randomColor, "dynamic");
+    this.playerBubble = new Bubble(this, 130, 480, randomColor, "dynamic");
   }
 
   detectCollision() {
@@ -191,7 +191,7 @@ class Game {
     /* this.enemies.sort(function (a, b) {
       return a.y - b.y;
     }); */
-    console.log(this.enemies);
+    //console.log(this.enemies);
     // if the bubble touches only one black bubble from the upper side then becomes black
     /* this.enemies.forEach((bubble) => {
       console.log(`the current ${bubble.color} enemy has y: ${bubble.y}`);
