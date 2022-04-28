@@ -333,7 +333,7 @@ class Game {
   }
 
   checkGameWon() {
-    this.iceCubeRapper.src = "../docs/assets/images/ice-cube-rapper.jpeg";
+    this.iceCubeRapper.src = "docs/assets/images/ice-cube-rapper.jpeg";
     if (this.enemies.length === 0) {
       //===0
       this.stop();
@@ -347,8 +347,7 @@ class Game {
   }
 
   checkGameOver() {
-    this.backgroundClosure.src =
-      "../docs/assets/images/vanilla-ice-rapper.jpeg";
+    this.backgroundClosure.src = "docs/assets/images/vanilla-ice-rapper.jpeg";
 
     let maxY = Math.max.apply(
       Math,
