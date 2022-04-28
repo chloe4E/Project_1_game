@@ -19,6 +19,7 @@ class Game {
     ];
     this.backgroundClosure = new Image();
     this.iceCubeRapper = new Image();
+    this.level = 1;
   }
 
   // loadBackground() {
@@ -58,18 +59,35 @@ class Game {
     this.removeBubble();
     this.checkAliveBubble();
     //this.rowChecker();
-    this.checkGameWon();
+
     this.checkGameOver();
+    //this.checkNextLevel();
+    this.checkGameWon();
   }
 
   createEnemies() {
     // fill in with array of static bubbles
-    this.enemies.push(new Bubble(this, 0, 0, "Pink", "static"));
-    this.enemies.push(new Bubble(this, 30, 0, "Pink", "static"));
-    this.enemies.push(new Bubble(this, 60, 0, "Blue", "static"));
-    this.enemies.push(new Bubble(this, 90, 0, "Blue", "static"));
-    this.enemies.push(new Bubble(this, 120, 0, "Green", "static"));
-    this.enemies.push(new Bubble(this, 150, 0, "Green", "static"));
+    if (this.level === 1) {
+      this.enemies.push(new Bubble(this, 0, 0, "Pink", "static"));
+      this.enemies.push(new Bubble(this, 30, 0, "Pink", "static"));
+      this.enemies.push(new Bubble(this, 60, 0, "Blue", "static"));
+      this.enemies.push(new Bubble(this, 90, 0, "Blue", "static"));
+      this.enemies.push(new Bubble(this, 120, 0, "Green", "static"));
+      this.enemies.push(new Bubble(this, 150, 0, "Green", "static"));
+    } else if (this.level === 2) {
+      this.enemies.push(new Bubble(this, 0, 0, "Pink", "static"));
+      this.enemies.push(new Bubble(this, 30, 0, "Pink", "static"));
+      this.enemies.push(new Bubble(this, 60, 0, "Blue", "static"));
+      this.enemies.push(new Bubble(this, 90, 0, "Blue", "static"));
+      this.enemies.push(new Bubble(this, 120, 0, "Green", "static"));
+      this.enemies.push(new Bubble(this, 150, 0, "Green", "static"));
+      this.enemies.push(new Bubble(this, 10, 30, "Pink", "static"));
+      this.enemies.push(new Bubble(this, 40, 30, "Pink", "static"));
+      this.enemies.push(new Bubble(this, 70, 30, "Blue", "static"));
+      this.enemies.push(new Bubble(this, 100, 30, "Blue", "static"));
+      this.enemies.push(new Bubble(this, 130, 30, "Green", "static"));
+      this.enemies.push(new Bubble(this, 160, 30, "Green", "static"));
+    }
   }
 
   createPlayerBubble() {
@@ -334,7 +352,7 @@ class Game {
 
   checkGameWon() {
     this.iceCubeRapper.src = "./docs/assets/images/ice-cube-rapper.jpeg";
-    if (this.enemies.length === 0) {
+    if (this.enemies.length === 0 && this.level < 2) {
       //===0
       this.stop();
       this.ctx.fillStyle = "Black";
@@ -366,5 +384,24 @@ class Game {
       this.ctx.fillStyle = "Lightgrey";
       this.ctx.fillText(`You got your ice kicked 😭`, 10, 350);
     }
+  }
+
+  checkNextLevel() {
+    if (this.enemies.length === 0 && this.level < 2) {
+      this.nextLevel();
+      setTimeout(() => {
+        this.start();
+      }, 3000);
+    }
+  }
+
+  nextLevel() {
+    this.level += 1;
+    this.playerBubble.speedX = 0;
+    this.playerBubble.speedY = 0;
+    clearInterval(this.IntervalId);
+    this.ctx.font = "20px Arial";
+    this.ctx.fillStyle = "red";
+    this.ctx.fillText(`LEVEL ${this.level}!`, 100, 300);
   }
 }
