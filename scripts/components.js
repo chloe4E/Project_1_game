@@ -60,22 +60,22 @@ class Arrow extends Bubble {
   }
 
   tiltLeft() {
-    if (this.x > 145 + 33) {
-      this.x -= 50;
-      this.y -= 33;
+    if (this.x > 145) {
+      this.x -= 25;
+      this.y -= 25;
     } else {
-      this.x -= 50;
-      this.y += 33;
+      this.x -= 25;
+      this.y += 25;
     }
   }
 
   tiltRight() {
-    if (this.x < 145 - 33) {
-      this.x += 50;
-      this.y -= 33;
+    if (this.x < 145) {
+      this.x += 25;
+      this.y -= 25;
     } else {
-      this.x += 50;
-      this.y += 33;
+      this.x += 25;
+      this.y += 25;
     }
   }
   drawArrow() {
