@@ -18,7 +18,7 @@ With the space bar the player can launch the square.<br>
 If the player-square hits a square of the same color, they both pop-up - as well as any adjacent square of the same color.<br>
 If after the pop, a square is not in contact with any other square, it will also pop.<br>
 <br>
-You can play the game in GitHub pages
+You can play the game in <a href="https://chloe4e.github.io/Project_1_game/" target="_blank">GitHub pages</a> 
 
 ## Challenges
 
