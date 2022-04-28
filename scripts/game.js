@@ -348,7 +348,7 @@ class Game {
 
   checkGameOver() {
     this.backgroundClosure.src =
-      "../docs/assets/images/crystal-859317_1280.webp";
+      "../docs/assets/images/vanilla-ice-rapper.jpeg";
 
     let maxY = Math.max.apply(
       Math,
@@ -360,24 +360,12 @@ class Game {
     if (maxY + 30 > 400) {
       //400
       this.stop();
-      /*       this.ctx.fillStyle = "Black";
-      this.ctx.fillRect(this.x, this.y, this.width, this.height); */
-      this.ctx.drawImage(
-        this.backgroundClosure,
-        this.x,
-        this.y,
-        this.width,
-        this.height
-      );
-      //this.ctx.drawImage(image, 150, 200, 500, 300, 60, 60, 500, 300);
-      this.ctx.font = "bolder 36px Courier New";
       this.ctx.fillStyle = "Black";
-      this.ctx.fillText(`You`, 30, 100);
-      this.ctx.fillText(`got`, 200, 150);
-      this.ctx.fillText(`your`, 30, 200);
-      this.ctx.fillText(`ice`, 200, 250);
-      this.ctx.fillText(`kicked`, 30, 300);
-      this.ctx.fillText(`😭 `, 135, 400);
+      this.ctx.fillRect(this.x, this.y, this.width, this.height);
+      this.ctx.drawImage(this.backgroundClosure, 45, 75);
+      this.ctx.font = "18px Courier New";
+      this.ctx.fillStyle = "Lightgrey";
+      this.ctx.fillText(`You got your ice kicked 😭`, 10, 350);
     }
   }
 }
