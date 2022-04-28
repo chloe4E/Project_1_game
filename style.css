@@ -1,11 +1,6 @@
 body {
   font-family: "Courier New", Courier, monospace;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  align-items: center;
-  align-content: stretch;
+
   /*  
   background-image: url(/images/fond-de-hotte-ardoise-noir-2.jpeg);
   */
@@ -13,10 +8,43 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
+main {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: stretch;
+}
+#game-section {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: stretch;
+}
 
+#instructions-section {
+  color: lightgray;
+  width: 300px;
+  font-size: large;
+  padding: 10px;
+}
+
+p {
+  line-height: 1.8;
+}
 h1 {
   color: lightgray;
   font-weight: lighter;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: stretch;
 }
 
 .fancy-border {
@@ -53,9 +81,9 @@ h1 {
   color: rgba(0, 0, 0, 0.7);
   text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.4);
 }
-.button:active div {
+/* .button:active div {
   padding-bottom: 9px;
-}
+} */
 
 .button {
   border: none;
@@ -69,4 +97,34 @@ h1 {
   overflow: hidden;
   cursor: pointer;
   margin: 12px;
+}
+
+footer {
+  color: lightgray;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  align-items: center;
+  align-content: flex-start;
+}
+
+footer div {
+  margin: 10px;
+}
+
+a {
+  color: lightgray;
+  word-spacing: -3px;
+  font-size: small;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+/* mouse over link */
+a:hover {
+  color: hotpink;
 }

@@ -8,23 +8,53 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1>Welcome to Ice Cubes</h1>
+    <header><h1>Welcome to Ice Cubes</h1></header>
 
-    <div>
-      <div id="game-board">
-        <canvas
-          id="canvas"
-          width="300"
-          height="510"
-          style="border: 1px solid lightgrey"
-        ></canvas>
+    <main>
+      <section id="instructions-section">
+        <div>
+          <p>
+            Orient your steering wheel using the left & right arrows.<br />
+            Shoot your current square with the space bar. <br />Your goal is to
+            touch a square of the same color. <br />You win once all the squares
+            have been popped! <br />
+            <br />Inspired by the game Frozen Bubbles.
+          </p>
+        </div>
+      </section>
+      <section id="game-section">
+        <div>
+          <div id="game-board">
+            <canvas
+              id="canvas"
+              width="300"
+              height="510"
+              style="border: 1px solid lightgrey"
+            ></canvas>
+          </div>
+        </div>
+
+        <button id="start-button" class="button wood">
+          <div>Start Game :)</div>
+        </button>
+      </section>
+    </main>
+
+    <footer>
+      <div>
+        <a href="https://www.ironhack.com" target="_blank">About Ironhack</a>
       </div>
-    </div>
-
-    <button id="start-button" class="button wood">
-      <div>Start Game :)</div>
-    </button>
-
+      <div>
+        <a href="https://en.wikipedia.org/wiki/Frozen_Bubble" target="_blank"
+          >About Frozen Bubbles</a
+        >
+      </div>
+      <div>
+        <a href="https://www.linkedin.com/in/chlo%C3%A9-faurie/" target="_blank"
+          >About me</a
+        >
+      </div>
+    </footer>
     <script type="text/javascript" src="scripts/components.js"></script>
     <script type="text/javascript" src="scripts/controls.js"></script>
     <script type="text/javascript" src="scripts/game.js"></script>

@@ -312,9 +312,9 @@ class Game {
         this.enemies.pop();
       }
       this.checkFlyingBubble();
-      this.enemies.forEach((enemy) => {
-        this.checkBottomNeighbour(this.playerBubble, enemy);
-      });
+      // this.enemies.forEach((enemy) => {
+      //   this.checkBottomNeighbour(this.playerBubble, enemy);
+      // });
       this.createPlayerBubble();
     } else if (this.playerBubble.behavior === "remove") {
       this.checkFlyingBubble();
